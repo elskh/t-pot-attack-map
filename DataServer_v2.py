@@ -406,7 +406,6 @@ def update_honeypot_data():
             }
         }
         res = es.search(index="logstash-*", size=100, query=ES_query)
-        print("Result = ", res)
         hits = res['hits']
         if len(hits['hits']) != 0:
             time_last_request = datetime.datetime.utcnow() - datetime.timedelta(seconds=mydelta)
