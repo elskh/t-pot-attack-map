@@ -383,7 +383,11 @@ def update_honeypot_data():
 
         # Get the last 100 new honeypot events every 0.5s
         mylast = str(time_last_request).split(" ")
+        # ADDED FOR DEBUG
+        print("mylast = ", mylast)
         mynow = str(datetime.datetime.utcnow() - datetime.timedelta(seconds=mydelta)).split(" ")
+        # ADDED FOR DEBUG
+        print("mynow = ", mynow)
         ES_query = {
             "bool": {
                 "must": [
@@ -405,7 +409,8 @@ def update_honeypot_data():
                 ]
             }
         }
-
+        # ADDED FOR DEBUG
+        print("ES_query = ", ES_query)
         res = es.search(index="logstash-*", size=100, query=ES_query)
         hits = res['hits']
         if len(hits['hits']) != 0:
